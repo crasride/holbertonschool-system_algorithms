@@ -78,6 +78,8 @@ void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node)
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 {
 	rb_tree_t *new_node = rb_tree_node(NULL, value, RED);
+	rb_tree_t *current = *tree;
+	rb_tree_t *parent = NULL;
 
 	if (!new_node)
 		return (NULL);
@@ -89,8 +91,7 @@ rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 		return (new_node);
 	}
 
-	rb_tree_t *current = *tree;
-	rb_tree_t *parent = NULL;
+
 
 	while (current != NULL)
 	{

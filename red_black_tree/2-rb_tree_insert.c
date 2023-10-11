@@ -1,83 +1,81 @@
 #include "rb_trees.h"
 
-
+/**
+ * fix_rb_insert - Fix the Red-Black Tree properties after insertion.
+ * @tree: Double pointer to the root node of the tree.
+ * @new_node: Pointer to the newly inserted node.
+ */
 void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node)
 {
-    rb_tree_t *parent = NULL;
-    rb_tree_t *grandparent = NULL;
-    rb_tree_t *uncle = NULL;
+	rb_tree_t *parent = NULL;
+	rb_tree_t *grandparent = NULL;
+	rb_tree_t *uncle = NULL;
 
-    while (new_node != *tree && new_node->color == RED && new_node->parent->color == RED)
-    {
-        parent = new_node->parent;
-        grandparent = parent->parent;
-
-        /* Ensure that the grandparent is not NULL */
-        if (grandparent == NULL) {
-            break; 
-        }
-
-        /* Determine whether the parent is a left or right child of the grandparent */
-        if (parent == grandparent->left)
-        {
-            uncle = grandparent->right;
-            fix_case_left(tree, new_node, parent, grandparent, uncle);
-        }
-        else
-        {
-            uncle = grandparent->left;
-            fix_case_right(tree, new_node, parent, grandparent, uncle);
-        }
-    }
-
-    (*tree)->color = BLACK;
-}
-
-
-void fix_case_left(rb_tree_t **tree, rb_tree_t *new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle)
-{
-	if (uncle && uncle->color == RED)
+	while (new_node != *tree && new_node->color == RED && new_node->parent->color == RED)
 	{
-		grandparent->color = RED;
-		parent->color = BLACK;
-		uncle->color = BLACK;
-		new_node = grandparent;
-	}
-	else
-	{
-		if (new_node == parent->right)
+		parent = new_node->parent;
+		grandparent = parent->parent;
+
+		/* If parent is the left child of grandparent */
+		if (parent == grandparent->left)
 		{
-			rotate_left(tree, parent);
-			new_node = parent;
-			parent = new_node->parent;
-		}
-		rotate_right(tree, grandparent);
-		swap_colors(parent, grandparent);
-		new_node = parent;
-	}
-}
+			uncle = grandparent->right;
 
-void fix_case_right(rb_tree_t **tree, rb_tree_t *new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle)
-{
-	if (uncle && uncle->color == RED)
-	{
-		grandparent->color = RED;
-		parent->color = BLACK;
-		uncle->color = BLACK;
-		new_node = grandparent;
-	}
-	else
-	{
-		if (new_node == parent->left)
-		{
-			rotate_right(tree, parent);
-			new_node = parent;
-			parent = new_node->parent;
+			/* Case 1: Uncle is RED */
+			if (uncle && uncle->color == RED)
+			{
+				grandparent->color = RED;
+				parent->color = BLACK;
+				uncle->color = BLACK;
+				new_node = grandparent;
+			}
+			else
+			{
+				/* Case 2: Uncle is BLACK and new_node is the right child */
+				if (new_node == parent->right)
+				{
+					rotate_left(tree, parent);
+					new_node = parent;
+					parent = new_node->parent;
+				}
+
+				/* Case 3: Uncle is BLACK and new_node is the left child */
+				rotate_right(tree, grandparent);
+				swap_colors(parent, grandparent);
+				new_node = parent;
+			}
 		}
-		rotate_left(tree, grandparent);
-		swap_colors(parent, grandparent);
-		new_node = parent;
+		else /* If parent is the right child of grandparent */
+		{
+			uncle = grandparent->left;
+
+			/* Case 1: Uncle is RED */
+			if (uncle && uncle->color == RED)
+			{
+				grandparent->color = RED;
+				parent->color = BLACK;
+				uncle->color = BLACK;
+				new_node = grandparent;
+			}
+			else
+			{
+				/* Case 2: Uncle is BLACK and new_node is the left child */
+				if (new_node == parent->left)
+				{
+					rotate_right(tree, parent);
+					new_node = parent;
+					parent = new_node->parent;
+				}
+
+				/* Case 3: Uncle is BLACK and new_node is the right child */
+				rotate_left(tree, grandparent);
+				swap_colors(parent, grandparent);
+				new_node = parent;
+			}
+		}
 	}
+
+	(*tree)->color = BLACK;
 }
 
 

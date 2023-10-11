@@ -8,6 +8,7 @@
 * @color: The color of the node (RED, BLACK, or DOUBLE_BLACK)
 * Return: A pointer to the new node, or NULL on failure
 */
+
 rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color)
 {
 	rb_tree_t *new_node;

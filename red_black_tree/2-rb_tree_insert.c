@@ -3,30 +3,36 @@
 
 void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node)
 {
-	rb_tree_t *parent = NULL;
-	rb_tree_t *grandparent = NULL;
-	rb_tree_t *uncle = NULL;
+    rb_tree_t *parent = NULL;
+    rb_tree_t *grandparent = NULL;
+    rb_tree_t *uncle = NULL;
 
-	while (new_node != *tree && new_node->color == RED && new_node->parent->color == RED)
-	{
-		parent = new_node->parent;
-		grandparent = parent->parent;
+    while (new_node != *tree && new_node->color == RED && new_node->parent->color == RED)
+    {
+        parent = new_node->parent;
+        grandparent = parent->parent;
 
-		/* Determine whether parent is left or right child the grandparent */
-		if (parent == grandparent->left)
-		{
-			uncle = grandparent->right;
-			fix_case_left(tree, new_node, parent, grandparent, uncle);
-		}
-		else
-		{
-			uncle = grandparent->left;
-			fix_case_right(tree, new_node, parent, grandparent, uncle);
-		}
-	}
+        /* Ensure that the grandparent is not NULL */
+        if (grandparent == NULL) {
+            break; 
+        }
 
-	(*tree)->color = BLACK;
+        /* Determine whether the parent is a left or right child of the grandparent */
+        if (parent == grandparent->left)
+        {
+            uncle = grandparent->right;
+            fix_case_left(tree, new_node, parent, grandparent, uncle);
+        }
+        else
+        {
+            uncle = grandparent->left;
+            fix_case_right(tree, new_node, parent, grandparent, uncle);
+        }
+    }
+
+    (*tree)->color = BLACK;
 }
+
 
 void fix_case_left(rb_tree_t **tree, rb_tree_t *new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle)
 {

@@ -1,12 +1,20 @@
 #include "rb_trees.h"
 
-
-void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node) {
+/**
+* fix_rb_insert - tree structure after inserting a new node and ensure that
+* Red-Black tree properties are maintained.
+*
+* @tree: A pointer to the root of the Red-Black tree.
+* @new_node: The newly inserted node.
+*/
+void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node)
+{
 	rb_tree_t *parent = NULL;
 	rb_tree_t *grandparent = NULL;
 	rb_tree_t *uncle = NULL;
 
-	while (new_node != *tree && new_node->color == RED && new_node->parent->color == RED)
+	while (new_node != *tree && new_node->color == RED &&
+			new_node->parent->color == RED)
 	{
 		parent = new_node->parent;
 		grandparent = parent->parent;
@@ -26,8 +34,21 @@ void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node) {
 	(*tree)->color = BLACK;
 }
 
-void handle_case_left(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle)
+/**
+* handle_case_left - Handle the case where the newly inserted node is a left
+* child in the Red-Black tree.
+*
+* @tree: A pointer to the root of the Red-Black tree.
+* @new_node: A pointer to the newly inserted node.
+* @parent: A pointer to the parent of the newly inserted node.
+* @grandparent: A pointer to the grandparent of the newly inserted node.
+* @uncle: A pointer to the uncle of the newly inserted node.
+*/
+void handle_case_left(rb_tree_t **tree, rb_tree_t **new_node,
+						rb_tree_t *parent, rb_tree_t *grandparent,
+						rb_tree_t *uncle)
 {
+	/* Case 1: Uncle is RED */
 	if (uncle && uncle->color == RED)
 	{
 		grandparent->color = RED;
@@ -37,20 +58,35 @@ void handle_case_left(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent,
 	}
 	else
 	{
+		/* Case 2: Uncle is BLACK and new_node is the right child */
 		if (*new_node == parent->right)
 		{
 			rotate_left(tree, parent);
 			*new_node = parent;
 			parent = (*new_node)->parent;
 		}
+		/* Case 3: Uncle is BLACK and new_node is the left child */
 		rotate_right(tree, grandparent);
 		swap_colors(parent, grandparent);
 		*new_node = parent;
 	}
 }
 
-void handle_case_right(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle)
+/**
+* handle_case_right -the newly inserted node is a right child in the Red-Black
+* tree.
+*
+* @tree: A pointer to the root of the Red-Black tree.
+* @new_node: A pointer to the newly inserted node.
+* @parent: A pointer to the parent of the newly inserted node.
+* @grandparent: A pointer to the grandparent of the newly inserted node.
+* @uncle: A pointer to the uncle of the newly inserted node.
+*/
+void handle_case_right(rb_tree_t **tree, rb_tree_t **new_node,
+						rb_tree_t *parent, rb_tree_t *grandparent,
+						rb_tree_t *uncle)
 {
+	/* Case 1: Uncle is RED */
 	if (uncle && uncle->color == RED)
 	{
 		grandparent->color = RED;
@@ -60,20 +96,19 @@ void handle_case_right(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent
 	}
 	else
 	{
+		/* Case 2: Uncle is BLACK and new_node is the left child */
 		if (*new_node == parent->left)
 		{
 			rotate_right(tree, parent);
 			*new_node = parent;
 			parent = (*new_node)->parent;
 		}
+		/* Case 3: Uncle is BLACK and new_node is the right child */
 		rotate_left(tree, grandparent);
 		swap_colors(parent, grandparent);
 		*new_node = parent;
 	}
 }
-
-
-
 
 /**
 * rb_tree_insert - Inserts a value in a Red-Black Tree.
@@ -96,8 +131,6 @@ rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 		*tree = new_node;
 		return (new_node);
 	}
-
-
 
 	while (current != NULL)
 	{

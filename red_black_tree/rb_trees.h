@@ -45,8 +45,8 @@ rb_tree_t *array_to_rb_tree(int *array, size_t size);
 
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value);
 void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node);
-void handle_case_right(rb_tree_t **tree, rb_tree_t *new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle);
-void handle_case_left(rb_tree_t **tree, rb_tree_t *new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle);
+void handle_case_right(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle);
+void handle_case_left(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent, rb_tree_t *grandparent, rb_tree_t *uncle);
 
 
 void swap_colors(rb_tree_t *parent, rb_tree_t *grandparent);

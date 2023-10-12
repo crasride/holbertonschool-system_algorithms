@@ -16,7 +16,9 @@ void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node)
 	while (new_node != *tree && new_node->color == RED &&
 			new_node->parent->color == RED)
 	{
+		/* Assigns the parent of the new node to the 'parent' variable. */
 		parent = new_node->parent;
+		/* Assigns the grandparent of the new node to the 'grandparent' var */
 		grandparent = parent->parent;
 
 		if (parent == grandparent->left)
@@ -31,7 +33,7 @@ void fix_rb_insert(rb_tree_t **tree, rb_tree_t *new_node)
 		}
 	}
 
-	(*tree)->color = BLACK;
+	(*tree)->color = BLACK; /* Mark the root as black at the end. */
 }
 
 /**

@@ -1,45 +1,91 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "rb_trees.h"
 
+
+
+
+
 /**
- * rb_tree_remove - Removes a node from a Red-Black tree
- * @root: Pointer to the root node of the tree
- * @n: The value to search and remove from the tree
- * Return: Pointer to the new root of the tree after deletion
+ * rb_tree_fix_delete - Fix Red-Black tree violations after deletion.
+ * @tree: Double pointer to the root node of the tree.
+ * @node: Node where deletion took place.
+ */
+void rb_tree_fix_delete(rb_tree_t **tree, rb_tree_t *node)
+{
+	rb_tree_t *sibling;
+
+	while (node != *tree && node->color == BLACK) {
+		if (node == node->parent->left) {
+			sibling = node->parent->right;
+			if (sibling->color == RED) {
+				sibling->color = BLACK;
+				node->parent->color = RED;
+				rotate_left(tree, node->parent);
+				sibling = node->parent->right;
+			}
+			if (sibling->left->color == BLACK && sibling->right->color == BLACK) {
+				sibling->color = RED;
+				node = node->parent;
+			} else {
+				if (sibling->right->color == BLACK) {
+					sibling->left->color = BLACK;
+					sibling->color = RED;
+					rotate_right(tree, sibling);
+					sibling = node->parent->right;
+				}
+				sibling->color = node->parent->color;
+				node->parent->color = BLACK;
+				sibling->right->color = BLACK;
+				rotate_left(tree, node->parent);
+				node = *tree;
+			}
+		} else {
+			sibling = node->parent->left;
+			if (sibling->color == RED) {
+				sibling->color = BLACK;
+				node->parent->color = RED;
+				rotate_right(tree, node->parent);
+				sibling = node->parent->left;
+			}
+			if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
+				sibling->color = RED;
+				node = node->parent;
+			} else {
+				if (sibling->left->color == BLACK) {
+					sibling->right->color = BLACK;
+					sibling->color = RED;
+					rotate_left(tree, sibling);
+					sibling = node->parent->left;
+				}
+				sibling->color = node->parent->color;
+				node->parent->color = BLACK;
+				sibling->left->color = BLACK;
+				rotate_right(tree, node->parent);
+				node = *tree;
+			}
+		}
+	}
+	node->color = BLACK;
+}
+
+/**
+ * rb_tree_remove - Remove a node from a Red-Black tree.
+ * @root: Pointer to the root node of the tree.
+ * @n: The value to search and remove.
+ * Return: The pointer to the new root of the tree after deletion.
  */
 rb_tree_t *rb_tree_remove(rb_tree_t *root, int n)
 {
 	if (!root)
 		return NULL;
 
-	root = rb_tree_remove_recursive(root, n);
-
-	if (root)
-		root->color = BLACK;
-
-	return root;
-}
-
-/**
- * rb_tree_remove_recursive - Helper function for rb_tree_remove
- * @root: Pointer to the root node of the tree
- * @n: The value to search and remove from the tree
- * Return: Pointer to the new root of the tree after deletion
- */
-rb_tree_t *rb_tree_remove_recursive(rb_tree_t *root, int n)
-{
-	if (!root)
-		return root;
 
 	if (n < root->n)
-		root->left = rb_tree_remove_recursive(root->left, n);
+		root->left = rb_tree_remove(root->left, n);
 	else if (n > root->n)
-		root->right = rb_tree_remove_recursive(root->right, n);
+		root->right = rb_tree_remove(root->right, n);
 	else {
 		if (!root->left || !root->right) {
 			rb_tree_t *temp = (root->left) ? root->left : root->right;
-
 			if (!temp) {
 				temp = root;
 				root = NULL;
@@ -47,162 +93,76 @@ rb_tree_t *rb_tree_remove_recursive(rb_tree_t *root, int n)
 				*root = *temp;
 			free(temp);
 		} else {
-			rb_tree_t *temp = rb_tree_find_min(root->right);
-
+			rb_tree_t *temp = rb_tree_min_value_node(root->right);
 			root->n = temp->n;
-			root->right = rb_tree_remove_recursive(root->right, temp->n);
+			root->right = rb_tree_remove(root->right, temp->n);
 		}
 	}
 
 	if (!root)
-		return root;
+		return NULL;
 
-	root = rb_tree_fix_violations(root, n);
 
-	return root;
-}
-
-/**
- * rb_tree_find_min - Find the node with the minimum value in a tree
- * @root: Pointer to the root node of the tree
- * Return: Pointer to the node with the minimum value
- */
-rb_tree_t *rb_tree_find_min(rb_tree_t *root)
-{
-	while (root->left)
-		root = root->left;
-	return root;
-}
-
-/**
- * rb_tree_fix_violations - Fix any violations after deleting a node
- * @root: Pointer to the root node of the tree
- * @n: The value that was deleted
- * Return: Pointer to the new root of the tree after fixing violations
- */
-rb_tree_t *rb_tree_fix_violations(rb_tree_t *root, int n)
-{
-	if (root->color == RED || (root->left && root->left->color == RED) || (root->right && root->right->color == RED))
-		return root;
-
-	rb_tree_t *parent = NULL, *sibling = NULL, *node = root;
-	while (node && !node->color && (node->left || node->right)) {
-		parent = node;
-		if (n < node->n) {
-			if (!node->left || !node->left->color) {
-				sibling = node->right;
-				if (sibling && sibling->color) {
-					sibling->color = 0;
-					node->color = 1;
-					root = rb_tree_rotate_left(root, node);
-					sibling = node->right;
-				}
-				if ((!sibling->left || !sibling->left->color) && (!sibling->right || !sibling->right->color)) {
-					sibling->color = 1;
-					node = parent;
-				} else {
-					if (!sibling->right || !sibling->right->color) {
-						sibling->left->color = 0;
-						sibling->color = 1;
-						root = rb_tree_rotate_right(root, sibling);
-						sibling = node->right;
-					}
-					sibling->color = node->color;
-					node->color = 0;
-					sibling->right->color = 0;
-					root = rb_tree_rotate_left(root, node);
-					break;
-				}
-			}
-		} else {
-			if (node->left && node->left->color) {
-				sibling = node->left;
-				if (sibling->color) {
-					sibling->color = 0;
-					node->color = 1;
-					root = rb_tree_rotate_right(root, node);
-					sibling = node->left;
-				}
-				if ((!sibling->left || !sibling->left->color) && (!sibling->right || !sibling->right->color)) {
-					sibling->color = 1;
-					node = parent;
-				} else {
-					if (!sibling->left || !sibling->left->color) {
-						sibling->right->color = 0;
-						sibling->color = 1;
-						root = rb_tree_rotate_left(root, sibling);
-						sibling = node->left;
-					}
-					sibling->color = node->color;
-					node->color = 0;
-					sibling->left->color = 0;
-					root = rb_tree_rotate_right(root, node);
-					break;
-				}
-			}
-		}
-	}
-	root->color = 0;
-	return root;
-}
-
-/**
- * rb_tree_rotate_left - Perform a left rotation on the Red-Black tree
- * @root: Pointer to the root node of the tree
- * @node: The node to rotate around
- * Return: New root after the rotation
- */
-rb_tree_t *rb_tree_rotate_left(rb_tree_t *root, rb_tree_t *node)
-{
-	rb_tree_t *right = node->right;
-
-	node->right = right->left;
-
-	if (right->left)
-		right->left->parent = node;
-
-	right->parent = node->parent;
-
-	if (!node->parent)
-		root = right;
-	else if (node == node->parent->left)
-		node->parent->left = right;
+	if (root->color == RED || (root->left && root->left->color == RED))
+		root->color = BLACK;
 	else
-		node->parent->right = right;
-
-	right->left = node;
-	node->parent = right;
+		rb_tree_fix_delete(&root, root);
 
 	return root;
 }
 
 /**
- * rb_tree_rotate_right - Perform a right rotation on the Red-Black tree
- * @root: Pointer to the root node of the tree
- * @node: The node to rotate around
- * Return: New root after the rotation
+ * rotate_left - Perform a left rotation on the given nodes.
+ * @tree: Double pointer to the root node of the tree.
+ * @parent: Pointer to the parent node to rotate.
  */
-rb_tree_t *rb_tree_rotate_right(rb_tree_t *root, rb_tree_t *node)
+void rotate_left(rb_tree_t **tree, rb_tree_t *parent)
 {
-	rb_tree_t *left = node->left;
+	rb_tree_t *right_child = parent->right;
 
-	node->left = left->right;
+	parent->right = right_child->left;
 
-	if (left->right)
-		left->right->parent = node;
+	if (parent->right)
+		parent->right->parent = parent;
 
-	left->parent = node->parent;
+	right_child->parent = parent->parent;
 
-	if (!node->parent)
-		root = left;
-	else if (node == node->parent->right)
-		node->parent->right = left;
+	if (!parent->parent)
+		*tree = right_child;
+	else if (parent == parent->parent->left)
+		parent->parent->left = right_child;
 	else
-		node->parent->left = left;
+		parent->parent->right = right_child;
 
-	left->right = node;
-	node->parent = left;
-
-	return root;
+	right_child->left = parent;
+	parent->parent = right_child;
 }
+
+/**
+ * rotate_right - Perform a right rotation on the given nodes.
+ * @tree: Double pointer to the root node of the tree.
+ * @grandparent: Pointer to the grandparent node to rotate.
+ */
+void rotate_right(rb_tree_t **tree, rb_tree_t *grandparent)
+{
+	rb_tree_t *parent = grandparent->left;
+
+	grandparent->left = parent->right;
+
+	if (parent->right)
+		parent->right->parent = grandparent;
+
+	parent->parent = grandparent->parent;
+
+	if (!grandparent->parent)
+		*tree = parent;
+	else if (grandparent == grandparent->parent->left)
+		grandparent->parent->left = parent;
+	else
+		grandparent->parent->right = parent;
+
+	parent->right = grandparent;
+	grandparent->parent = parent;
+}
+
 

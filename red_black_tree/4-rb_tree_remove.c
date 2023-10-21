@@ -54,4 +54,10 @@ void rotate_right(rb_tree_t **tree, rb_tree_t *grandparent)
 	grandparent->parent = parent;
 }
 
-
+/**
+ * rb_tree_remove - Removes a node from a Red-Black Tree
+ * @root: Pointer to the root node of the tree
+ * @n: Value to search and remove from the tree
+ * Return: Pointer to the new root of the tree after deletion
+ */
+rb_tree_t *rb_tree_remove(rb_tree_t *root, int n)

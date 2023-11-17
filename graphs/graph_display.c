@@ -4,10 +4,10 @@
 #include "graphs.h"
 
 /**
- * graph_display - Utility function to display the adjacency linked list
- *
- * @graph: Pointer to the graph structure to be displayed
- */
+* graph_display - Utility function to display the adjacency linked list
+*
+* @graph: Pointer to the graph structure to be displayed
+*/
 void graph_display(const graph_t *graph)
 {
 	vertex_t *v;

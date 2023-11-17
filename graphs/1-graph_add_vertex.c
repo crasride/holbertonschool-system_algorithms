@@ -13,11 +13,14 @@
  */
 vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 {
+	vertex_t *current_vertex;
+	vertex_t *new_vertex;
+
 	if (graph == NULL || str == NULL)
 		return NULL;
 
 	/* Check if the vertex with the same content already exists */
-	vertex_t *current_vertex = graph->vertices;
+	current_vertex = graph->vertices;
 	while (current_vertex != NULL)
 	{
 		if (strcmp(current_vertex->content, str) == 0)
@@ -26,7 +29,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 	}
 
 	/* Create a new vertex */
-	vertex_t *new_vertex = malloc(sizeof(vertex_t));
+	new_vertex = malloc(sizeof(vertex_t));
 	if (new_vertex == NULL)
 		return NULL;  /* Memory allocation failed */
 

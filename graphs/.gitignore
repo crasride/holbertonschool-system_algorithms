@@ -1,0 +1,6 @@
+0-graph_create
+1-graph_add_vertex
+2-graph_add_edge
+3-graph_delete
+4-depth_first_traverse
+5-breadth_first_traverse

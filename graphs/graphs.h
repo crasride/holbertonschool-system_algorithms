@@ -67,18 +67,32 @@ typedef struct graph_s
 	vertex_t *vertices;
 } graph_t;
 
+/* Functions task 0 */
 void graph_display(const graph_t *graph);
 graph_t *graph_create(void);
+
+/* Functions task 1 */
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
 vertex_t *create_vertex(const char *str, int index);
 
-
-
+/* Functions task 2 */
 int graph_add_edge(graph_t *graph, const char *src, const char *dest,
 					edge_type_t type);
+int add_directed_edge(vertex_t *src_vertex, vertex_t *dest_vertex);
+
+/* Functions task 3 */
 void graph_delete(graph_t *graph);
+void free_vertex(vertex_t *vertex);
+void free_edges(edge_t *edges);
+
+
+
+/* Functions task 4 */
 size_t depth_first_traverse(const graph_t *graph,
 							void (*action)(const vertex_t *v, size_t depth));
+
+/* Functions task 5 */
 size_t breadth_first_traverse(const graph_t *graph,
 							void (*action)(const vertex_t *v, size_t depth));
+
 #endif /* _GRAPHS_H_ */

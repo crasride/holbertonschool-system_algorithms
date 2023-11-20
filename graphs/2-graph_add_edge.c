@@ -1,6 +1,15 @@
 #include "graphs.h"
 #include <stdio.h>
 
+
+/**
+* add_directed_edge -Adds a directed edge from the source vertex to the
+* destination vertex.
+*
+* @src_vertex: Pointer to the source vertex.
+* @dest_vertex: Pointer to the destination vertex.
+* Return: 1 if the directed edge is successfully added, 0 otherwise.
+*/
 int add_directed_edge(vertex_t *src_vertex, vertex_t *dest_vertex)
 {
 	/* Create an edge from src to dest */
@@ -28,7 +37,19 @@ int add_directed_edge(vertex_t *src_vertex, vertex_t *dest_vertex)
 	return (1);
 }
 
-
+/**
+* graph_add_edge - Adds an edge between two vertices to an existing graph.
+*
+* @graph: Pointer to the graph to add the edge to.
+* @src: The string identifying the vertex to make the connection from.
+* @dest: The string identifying the vertex to connect to.
+* @type: The type of edge (UNIDIRECTIONAL or BIDIRECTIONAL).
+*
+* Return: 1 on success, 0 on failure. On failure, no edge must be created,
+*         and there must be no memory leak.
+*         If either src or dest are not found in any vertex of graph,
+*         the function must fail, and there must be no leak.
+*/
 int graph_add_edge(graph_t *graph, const char *src, const char *dest,
 					edge_type_t type)
 {

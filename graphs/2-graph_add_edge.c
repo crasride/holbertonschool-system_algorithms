@@ -32,13 +32,13 @@ int add_directed_edge(vertex_t *src_vertex, vertex_t *dest_vertex)
 int graph_add_edge(graph_t *graph, const char *src, const char *dest,
 					edge_type_t type)
 {
-	if (graph == NULL || src == NULL || dest == NULL)
-		return (0);
-
 	/* Find the source and destination vertices */
 	vertex_t *src_vertex = NULL;
 	vertex_t *dest_vertex = NULL;
 	vertex_t *current_vertex = NULL;
+
+	if (graph == NULL || src == NULL || dest == NULL)
+		return (0);
 
 	current_vertex = graph->vertices;
 

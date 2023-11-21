@@ -90,6 +90,9 @@ void free_edges(edge_t *edges);
 /* Functions task 4 */
 size_t depth_first_traverse(const graph_t *graph,
 							void (*action)(const vertex_t *v, size_t depth));
+size_t depth_first_traverse_helper(const vertex_t *vertex,
+									void (*action)(const vertex_t *v,
+									size_t depth), size_t depth, int *visited);
 
 /* Functions task 5 */
 size_t breadth_first_traverse(const graph_t *graph,

@@ -11,7 +11,8 @@ void bfs_traverse_from_vertex(const graph_t *graph,
 									size_t depth), size_t *max_depth)
 {
 	vertex_t *current_vertex = NULL;
-	size_t depth, front, rear;
+	size_t depth;
+	size_t front, rear;
 	edge_t *edge = NULL;
 	vertex_t **queue = malloc(graph->nb_vertices * sizeof(vertex_t *));
 
@@ -32,6 +33,7 @@ void bfs_traverse_from_vertex(const graph_t *graph,
 			*max_depth = depth;
 
 		action(current_vertex, depth);
+
 		edge = current_vertex->edges;
 
 		while (edge != NULL)
@@ -45,6 +47,7 @@ void bfs_traverse_from_vertex(const graph_t *graph,
 		}
 		front++;
 	}
+
 	free(queue);
 }
 
@@ -60,17 +63,24 @@ size_t breadth_first_traverse(const graph_t *graph,
 		return (0);
 
 	visited = calloc(graph->nb_vertices, sizeof(int));
-
 	if (visited == NULL)
 		return (0);
 
 	current_vertex = graph->vertices;
 
+	/* Check if there are no edges in the graph */
+	if (current_vertex != NULL && current_vertex->edges == NULL)
+	{
+		action(current_vertex, 0);
+		free(visited);
+		return (0);
+	}
+
 	while (current_vertex != NULL)
 	{
 		if (!visited[current_vertex->index])
-			bfs_traverse_from_vertex(graph, current_vertex, visited, action,
-									&max_depth);
+			bfs_traverse_from_vertex(graph, current_vertex, visited,
+			action, &max_depth);
 
 		current_vertex = current_vertex->next;
 	}
@@ -79,5 +89,3 @@ size_t breadth_first_traverse(const graph_t *graph,
 
 	return (max_depth);
 }
-
-

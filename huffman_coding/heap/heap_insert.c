@@ -80,17 +80,18 @@ int *front, int *rear)
 static binary_tree_node_t *add_node(binary_tree_node_t *root,
 									binary_tree_node_t *new_node)
 {
+	binary_tree_node_t *result = NULL;
 	/* Initialize the level order queue */
 	int front = 0, rear = 1, max_size = 20;
 	binary_tree_node_t **level_order_queue =
 	initialize_level_order_queue(max_size);
 
+	/* If the queue is NULL, return NULL */
 	if (level_order_queue == NULL)
 		return (NULL);
 
-	binary_tree_node_t *result = level_order_traversal_add(root, new_node,
-															level_order_queue,
-															&front, &rear);
+	result = level_order_traversal_add(root, new_node, level_order_queue,
+										&front, &rear);
 
 	free(level_order_queue);
 	return (result);

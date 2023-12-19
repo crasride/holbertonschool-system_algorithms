@@ -33,13 +33,20 @@ typedef struct heap_s
 	binary_tree_node_t *root;
 } heap_t;
 
-
 /* Functions Task 0 */
 heap_t *heap_create(int (*data_cmp)(void *, void *));
+
 /* Functions Task 1 */
 binary_tree_node_t *binary_tree_node(binary_tree_node_t *parent, void *data);
 
-/* Functions Task 1 */
+/* Functions Task 2 */
 binary_tree_node_t *heap_insert(heap_t *heap, void *data);
+
+/* Functions Task 3 */
+binary_tree_node_t *get_last_node(heap_t *heap);
+void pile(heap_t *heap, binary_tree_node_t *node);
+void *heap_extract(heap_t *heap);
+
+/* Functions Task 4 */
 
 #endif /* HEAP_H */

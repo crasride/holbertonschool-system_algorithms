@@ -43,31 +43,32 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 	symbol_t *symbol;
 	binary_tree_node_t *node;
 	size_t i;
-
+	/* Check for NULL */
 	if (!data || !freq || size == 0)
 		return (NULL);
-
+	/* Create heap */
 	heap = heap_create(symbol_cmp);
 	if (!heap)
 		return (NULL);
-
+	/* Create symbol for each character */
 	for (i = 0; i < size; ++i)
-	{
+	{	/* Create symbol */
 		symbol = symbol_create(data[i], freq[i]);
 		if (!symbol)
 		{
 			heap_delete(heap, free_symbol);
 			return (NULL);
 		}
-
+		/* Create node for symbol */
 		node = binary_tree_node(NULL, symbol);
+		/* Check for NULL */
 		if (!node)
 		{
 			free_symbol(symbol);
 			heap_delete(heap, free_symbol);
 			return (NULL);
 		}
-
+		/* Insert node into heap */
 		if (!heap_insert(heap, node))
 		{
 			free_symbol(symbol);
@@ -76,7 +77,6 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 			return (NULL);
 		}
 	}
-
 	return (heap);
 }
 

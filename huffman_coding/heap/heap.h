@@ -48,5 +48,6 @@ void pile(heap_t *heap, binary_tree_node_t *node);
 void *heap_extract(heap_t *heap);
 
 /* Functions Task 4 */
+void heap_delete(heap_t *heap, void (*free_data)(void *));
 
 #endif /* HEAP_H */

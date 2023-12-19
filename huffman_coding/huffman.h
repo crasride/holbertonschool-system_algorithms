@@ -25,4 +25,11 @@ void free_symbol(void *ptr);
 int symbol_cmp(void *p1, void *p2);
 heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size);
 
+/* Functions Task 7*/
+int huffman_extract_and_insert(heap_t *priority_queue);
+
+/* Functions Task 8*/
+
+/* Functions Task 9*/
+
 #endif /* HUFFMAN_H */

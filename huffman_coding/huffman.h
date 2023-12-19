@@ -26,9 +26,12 @@ int symbol_cmp(void *p1, void *p2);
 heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size);
 
 /* Functions Task 7*/
+binary_tree_node_t *huffman_extract(heap_t *priority_queue);
+int huffman_insert(heap_t *priority_queue, binary_tree_node_t *node);
 int huffman_extract_and_insert(heap_t *priority_queue);
 
 /* Functions Task 8*/
+binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size);
 
 /* Functions Task 9*/
 

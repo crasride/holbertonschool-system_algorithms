@@ -1,60 +1,61 @@
-#include "heap.h"
 #include "huffman.h"
+#include "heap.h"
 
 /**
-* huffman_extract - Extrae dos nodos del priority_queue.
-* @priority_queue: Puntero al priority_queue.
+* huffman_extract_and_insert - Extracts two nodes from a priority queue and
+* inserts a new node with a combined frequency.
 *
-* Return: Puntero a nuevo nodo con la suma de las frecuencias o NULL si falla.
-*/
-binary_tree_node_t *huffman_extract(heap_t *priority_queue)
-{
-	binary_tree_node_t *node1, *node2;
-
-	if (priority_queue == NULL || priority_queue->size < 2)
-		return (NULL);
-
-	/* Extrae los dos nodos con las frecuencias más bajas */
-	node1 = heap_extract(priority_queue);
-	node2 = heap_extract(priority_queue);
-
-	if (node1 == NULL || node2 == NULL)
-		return (NULL);
-
-	/* Crea un nuevo nodo con la suma de las frecuencias */
-	return (binary_tree_node(NULL, symbol_create(-1, ((symbol_t *)node1->data)
-			->freq + ((symbol_t *)node2->data)->freq)));
-}
-
-/**
-* huffman_insert - Inserta un nuevo nodo en el priority_queue.
-* @priority_queue: Puntero al priority_queue.
-* @node: Puntero al nodo que se va a insertar.
+* @priority_queue: Pointer to the heap representing the priority queue.
 *
-* Return: 1 en éxito, 0 en fallo.
-*/
-int huffman_insert(heap_t *priority_queue, binary_tree_node_t *node)
-{
-	if (priority_queue == NULL || node == NULL)
-		return (0);
-
-	/* Inserta el nuevo nodo en el priority_queue */
-	return (heap_insert(priority_queue, node) != NULL);
-}
-
-/**
-* huffman_extract_and_insert - Extrae dos nodos y luego inserta un nuevo nodo.
-* @priority_queue: Puntero al priority_queue.
-*
-* Return: 1 en éxito, 0 en fallo.
+* Return: 1 on success, 0 on failure.
 */
 int huffman_extract_and_insert(heap_t *priority_queue)
 {
-	binary_tree_node_t *new_node = huffman_extract(priority_queue);
+	binary_tree_node_t *node1 = NULL, *node2 = NULL, *node = NULL;
+	symbol_t *symbol = NULL;
 
-	if (new_node == NULL)
-		return (0);
+	if (!priority_queue || priority_queue->size < 2)
+		return 0;
 
-	/* Inserta el nuevo nodo en el priority_queue */
-	return (huffman_insert(priority_queue, new_node));
+	node1 = heap_extract(priority_queue);
+	node2 = heap_extract(priority_queue);
+
+	if (!node1 || !node2)
+		return 0;
+
+	symbol = symbol_create(-1, ((symbol_t *)node1->data)->freq +
+										((symbol_t *)node2->data)->freq);
+
+	if (!symbol)
+	{
+		free(node1);
+		free(node2);
+		return 0;
+	}
+
+	node = binary_tree_node(NULL, symbol);
+
+	if (!node)
+	{
+		free_symbol(symbol);
+		free(node1);
+		free(node2);
+		return 0;
+	}
+
+	node->left = node1;
+	node->right = node2;
+	node1->parent = node;
+	node2->parent = node;
+
+	if (!heap_insert(priority_queue, node))
+	{
+		free_symbol(symbol);
+		free(node1);
+		free(node2);
+		free(node);
+		return 0;
+	}
+
+	return 1;
 }

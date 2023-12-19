@@ -22,11 +22,11 @@ void free_symbol(void *ptr)
 */
 int symbol_cmp(void *p1, void *p2)
 {
-	/* p1 and p2 are symbol_t* */
-	symbol_t *symbol1 = (symbol_t *)p1;
-	symbol_t *symbol2 = (symbol_t *)p2;
+	symbol_t *sym1, *sym2;
 
-	return (symbol1->freq - symbol2->freq);
+	sym1 = ((binary_tree_node_t *)p1)->data;
+	sym2 = ((binary_tree_node_t *)p2)->data;
+	return (sym1->freq - sym2->freq);
 }
 
 /**
@@ -39,46 +39,45 @@ int symbol_cmp(void *p1, void *p2)
 */
 heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 {
-	heap_t *priority_queue;
-	binary_tree_node_t *node;
+	heap_t *heap;
 	symbol_t *symbol;
+	binary_tree_node_t *node;
 	size_t i;
-	/* Check if the data, freq and size are valid */
-	if (data == NULL || freq == NULL || size == 0)
+
+	if (!data || !freq || size == 0)
 		return (NULL);
-	/* Create the priority queue */
-	priority_queue = heap_create(symbol_cmp);
-	if (priority_queue == NULL)
+
+	heap = heap_create(symbol_cmp);
+	if (!heap)
 		return (NULL);
-	/* Create a node for each symbol and insert it into the heap */
+
 	for (i = 0; i < size; ++i)
 	{
 		symbol = symbol_create(data[i], freq[i]);
-		/* Check if the symbol was created */
-		if (symbol == NULL)
+		if (!symbol)
 		{
-			/* If the symbol creation fails, free the priority queue */
-			heap_delete(priority_queue, free_symbol);
+			heap_delete(heap, free_symbol);
 			return (NULL);
 		}
-		/* Create a node for the symbol */
+
 		node = binary_tree_node(NULL, symbol);
-		/* Check if the node was created */
-		if (node == NULL)
+		if (!node)
 		{
-			/* If the node creation fails, free the symbol */
-			heap_delete(priority_queue, free_symbol);
+			free_symbol(symbol);
+			heap_delete(heap, free_symbol);
 			return (NULL);
 		}
-		/* Insert the node into the heap */
-		if (heap_insert(priority_queue, node) == NULL)
+
+		if (!heap_insert(heap, node))
 		{
-			/* If the insertion fails, free the symbol and the node */
-			heap_delete(priority_queue, free_symbol);
+			free_symbol(symbol);
+			free(node);
+			heap_delete(heap, free_symbol);
 			return (NULL);
 		}
 	}
-	return (priority_queue);
+
+	return (heap);
 }
 
 

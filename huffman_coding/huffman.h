@@ -20,4 +20,9 @@ typedef struct symbol_s
 /* Functions Task 5*/
 symbol_t *symbol_create(char data, size_t freq);
 
+/* Functions Task 6*/
+void free_symbol(void *ptr);
+int symbol_cmp(void *p1, void *p2);
+heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size);
+
 #endif /* HUFFMAN_H */

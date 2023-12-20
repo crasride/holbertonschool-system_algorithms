@@ -9,6 +9,8 @@
 */
 void huffman_codes_recursive(const binary_tree_node_t *node, char *code)
 {
+	char *code_right = NULL, *code_left = NULL;
+
 	if (!node)
 		return;
 
@@ -18,15 +20,27 @@ void huffman_codes_recursive(const binary_tree_node_t *node, char *code)
 		return;
 	}
 
-	huffman_codes_recursive(node->left, strcat(strcpy(malloc(strlen(code) + 2),
-	code), "0"));
+	code_left = strcat(strcpy(malloc(strlen(code) + 2), code), "0");
+	if (!code_left)
+	{
+		fprintf(stderr, "Error allocating memory\n");
+		exit(EXIT_FAILURE);
+	}
 
+	huffman_codes_recursive(node->left, code_left);
+	free(code_left);
 
-	huffman_codes_recursive(node->right, strcat(strcpy(malloc(strlen(code) + 2),
-	code), "1"));
+	code_right = strcat(strcpy(malloc(strlen(code) + 2), code), "1");
+	if (!code_right)
+	{
+		fprintf(stderr, "Error allocating memory\n");
+		exit(EXIT_FAILURE);
+	}
 
-	free(code);
+	huffman_codes_recursive(node->right, code_right);
+	free(code_right);
 }
+
 
 /**
 * huffman_codes - Builds the Huffman tree and prints resulting Huffman codes.

@@ -1,5 +1,6 @@
 #include "huffman.h"
 #include "heap.h"
+#include <string.h>
 
 /**
 * huffman_codes_recursive - Recursively traverse the Huffman tree print codes.

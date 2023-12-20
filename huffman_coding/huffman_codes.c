@@ -40,6 +40,7 @@ void huffman_codes_recursive(const binary_tree_node_t *node, char *code)
 
 	huffman_codes_recursive(node->right, code_right);
 	free(code_right);
+	free(node->data);
 }
 
 
@@ -91,5 +92,6 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 
 	heap_delete(priority_queue, free_symbol);
 	free(root);
+	free(code);
 	return (1);
 }

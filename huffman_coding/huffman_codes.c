@@ -18,6 +18,8 @@ void huffman_codes_recursive(const binary_tree_node_t *node, char *code)
 	if (!node->left && !node->right)
 	{
 		printf("%c: %s\n", ((symbol_t *)node->data)->data, code);
+		free_symbol(node->data);
+		free((void *)node);
 		return;
 	}
 
@@ -41,6 +43,7 @@ void huffman_codes_recursive(const binary_tree_node_t *node, char *code)
 	huffman_codes_recursive(node->right, code_right);
 	free(code_right);
 	free(node->data);
+	free((void *)node);
 }
 
 

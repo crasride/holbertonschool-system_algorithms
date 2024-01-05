@@ -34,6 +34,7 @@ Huffman coding is a `compression algorithm` that assigns variable-length codes t
 
 ### Description
 
+---
 
 ## Author
 

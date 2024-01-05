@@ -42,7 +42,7 @@ Huffman coding is a `compression algorithm` that assigns variable-length codes t
 
 <sub>_You can contact me_ 📩
 
-[Fernandez Armas José Daniel](https://github.com/crasride)
+[Fernandez Armas José](https://github.com/crasride)
 
 <p align="left">
 <a href="https://twitter.com/JosFern35900656" target="blank"><img align="center" src="./images/twitter.svg" alt="crasride" height="30" width="40" /></a>

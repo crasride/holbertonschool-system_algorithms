@@ -13,6 +13,7 @@
 * [Dijkstra’s Algorithm - Computerphile](https://www.youtube.com/watch?v=GazC3A4OQTE)
 * [A Star algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
 * [A Star Search Algorithm - Computerphile](https://www.youtube.com/watch?v=ySN5Wnu88nE)
+* [Brief description of the algorithms described above](./note.md)
 
 ## Learning Objectives
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:

@@ -10,18 +10,34 @@
 queue_t *backtracking_graph(graph_t *graph, vertex_t const *start,
 							vertex_t const *target)
 {
-	queue_t *Q;
-	graph_t *visited;
+	queue_t *Q = queue_create();
+	graph_t *visited = graph_create();
 
-	visited = graph_create();
-	Q = queue_create();
-	backtrack_find_path(graph, start, target, Q, visited);
-	graph_delete(visited);
-	if (!Q->front)
+	/* Check if memory allocation was successful */
+	if (!Q || !visited)
 	{
-		free(Q);
+		/* Clean up and print an error message */
+		if (Q)
+		{
+			queue_delete(Q);
+		}
+		if (visited)
+		{
+			graph_delete(visited);
+		}
+		fprintf(stderr, "Failed to create path_queue or visited graph\n");
 		return (NULL);
 	}
+
+	/* Check if start and target vertices exist in the graph */
+	if (!backtrack_find_path(graph, start, target, Q, visited))
+	{
+		printf("No path found\n");
+		graph_delete(visited);
+		queue_delete(Q);
+		return (NULL);
+	}
+
 	return (Q);
 }
 

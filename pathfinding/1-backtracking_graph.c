@@ -89,8 +89,9 @@ int backtrack_find_path(graph_t *graph, vertex_t const *start,
 */
 int is_vertex_visited(const vertex_t *next, graph_t *visited)
 {
+	vertex_t *current_vertex;
 	/* Iterate over visited vertices and check if the given vertex is visited */
-	for (vertex_t *current_vertex = visited->vertices; current_vertex;
+	for (current_vertex = visited->vertices; current_vertex;
 		current_vertex = current_vertex->next)
 	{
 /* printf("Comparing %s to %s\n", next->content, current_vertex->content); */

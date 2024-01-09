@@ -10,35 +10,24 @@
 queue_t *backtracking_graph(graph_t *graph, vertex_t const *start,
 							vertex_t const *target)
 {
-	queue_t *Q = queue_create();
-	graph_t *visited = graph_create();
+	queue_t *path_queue;
+	graph_t *visited;
 
-	/* Check if memory allocation was successful */
-	if (!Q || !visited)
+	if (!graph || !start || !target)
+		return (NULL);
+
+	visited = graph_create();
+	path_queue = queue_create();
+
+	backtrack_find_path(graph, start, target, path_queue, visited);
+
+	graph_delete(visited);
+	if (!path_queue->front)
 	{
-		/* Clean up and print an error message */
-		if (Q)
-		{
-			queue_delete(Q);
-		}
-		if (visited)
-		{
-			graph_delete(visited);
-		}
-		fprintf(stderr, "Failed to create path_queue or visited graph\n");
+		free(path_queue);
 		return (NULL);
 	}
-
-	/* Check if start and target vertices exist in the graph */
-	if (!backtrack_find_path(graph, start, target, Q, visited))
-	{
-		printf("No path found\n");
-		graph_delete(visited);
-		queue_delete(Q);
-		return (NULL);
-	}
-
-	return (Q);
+	return (path_queue);
 }
 
 /**
@@ -94,10 +83,9 @@ int is_vertex_visited(const vertex_t *next, graph_t *visited)
 	for (current_vertex = visited->vertices; current_vertex;
 		current_vertex = current_vertex->next)
 	{
-/* printf("Comparing %s to %s\n", next->content, current_vertex->content); */
+		/* printf("Comparing %s to %s\n", next->content, current_vertex->content); */
 		if (strcmp(next->content, current_vertex->content) == 0)
 			return (1);
 	}
 	return (0);
 }
-

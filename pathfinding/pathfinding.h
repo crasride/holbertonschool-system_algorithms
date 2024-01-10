@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <limits.h>
+#include <sys/types.h>
 #include "queues.h"
 #include "graphs.h"
 
@@ -33,5 +35,17 @@ int backtrack_find_path(graph_t *graph, vertex_t const *start,
 						vertex_t const *target, queue_t *path_queue,
 						graph_t *visited);
 int is_vertex_visited(const vertex_t *next, graph_t *visited);
+
+/*Functions task 2*/
+
+typedef struct
+{
+	int *distance; /* distance from start vertex */
+	vertex_t **from; /* previous vertex in path */
+	vertex_t **verts; /* array of pointers to vertices */
+} DijkstraData;
+
+queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
+						vertex_t const *target);
 
 #endif /* __PATHFINDER__ */

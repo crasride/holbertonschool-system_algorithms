@@ -1,7 +1,10 @@
 #include "pathfinding.h"
 
 
-
+/**
+* cleanup_memory - frees memory allocated for DijkstraData
+* @data: pointer to DijkstraData struct
+*/
 void cleanup_memory(DijkstraData *data)
 {
 	free(data->distance);
@@ -9,6 +12,11 @@ void cleanup_memory(DijkstraData *data)
 	free(data->verts);
 }
 
+/**
+* safe_strdup - duplicates a string
+* @s: string to duplicate
+* Return: pointer to new string
+*/
 char *safe_strdup(const char *s)
 {
 	char *str = strdup(s);
@@ -20,6 +28,13 @@ char *safe_strdup(const char *s)
 	}
 	return (str);
 }
+
+/**
+* initialize_arrays - initializes arrays for Dijkstra's algorithm
+* @data: pointer to DijkstraData struct
+* @graph: pointer to graph struct
+* @start: pointer to starting vertex
+*/
 
 void initialize_arrays(DijkstraData *data, graph_t *graph,
 						vertex_t const *start)
@@ -44,6 +59,13 @@ void initialize_arrays(DijkstraData *data, graph_t *graph,
 	data->from[start->index] = NULL;
 }
 
+/**
+* dijkstra_graph - uses Dijkstra's algorithm to find shortest path
+* @graph: pointer to graph struct
+* @start: pointer to starting vertex
+* @target: pointer to target vertex
+* Return: queue containing path from start to target, or NULL if no path
+*/
 queue_t *dijkstra_graph(graph_t *graph, vertex_t const *start,
 						vertex_t const *target)
 {

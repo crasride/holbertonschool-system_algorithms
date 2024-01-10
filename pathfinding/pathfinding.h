@@ -37,8 +37,15 @@ int backtrack_find_path(graph_t *graph, vertex_t const *start,
 int is_vertex_visited(const vertex_t *next, graph_t *visited);
 
 /*Functions task 2*/
-
-typedef struct
+/**
+* struct DijkstraData - data for Dijkstra's algorithm
+*
+* @distance: array of distances from start vertex
+* @from: array of previous vertices in path
+* @verts: array of pointers to vertices
+*
+*/
+typedef struct DijkstraData
 {
 	int *distance; /* distance from start vertex */
 	vertex_t **from; /* previous vertex in path */

@@ -28,7 +28,7 @@ Graphs represent a collection of `nodes` and `edges`, where `nodes` represent en
 Huffman coding is a `compression algorithm` that assigns variable-length codes to input `characters` based on their `frequencies`. Characters with higher frequencies receive `shorter codes`, resulting in more efficient `compression`. Huffman coding is widely used in `data compression applications`, including `file compression` and `image encoding`. It is known for its simplicity and effectiveness in achieving `compression with minimal loss of information`.
 
 <details>
-<summary> **What is a binary heap (min and max):** </summary>
+<summary>What is a binary heap (min and max):</summary>
 <br>
 A binary heap is a specialized binary tree-based data structure that satisfies the heap property. In a min-heap, for every node i other than the root, the value of i is greater than or equal to the values of its children. This ensures that the smallest element is always at the root. Conversely, in a max-heap, for every node i other than the root, the value of i is less than or equal to the values of its children, ensuring that the largest element is at the root. Binary heaps are commonly used in algorithms that require efficient access to the minimum or maximum element, such as priority queues.
 </details>

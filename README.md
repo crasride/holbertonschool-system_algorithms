@@ -196,7 +196,7 @@ Backtracking is a brute-force algorithmic technique where the system systematica
 <summary>What is Dijkstra’s algorithm, and what is its main weakness:</summary>
 <br>
 
-Dijkstra's algorithm is a popular pathfinding algorithm used to find the shortest path between two nodes in a weighted graph. It works by iteratively selecting the node with the smallest known distance and updating the distances to its neighboring nodes. The main weakness of Dijkstra's algorithm is that it does not handle negative edge weights well. If a graph contains negative weights, the algorithm may produce incorrect results.
+`Dijkstra's` algorithm is a popular `pathfinding` algorithm used to find the shortest path between two nodes in a weighted graph. It works by iteratively selecting the node with the `smallest` known `distance` and updating the distances to its neighboring nodes. The main weakness of `Dijkstra's`algorithm is that it does not handle negative edge weights well. If a graph contains negative weights, the algorithm may produce incorrect results.
 
 </details>
 
@@ -205,7 +205,7 @@ Dijkstra's algorithm is a popular pathfinding algorithm used to find the shortes
 <summary>What is A algorithm, and how is it better than Dijkstra’s:</summary>
 <br>
 
-The A* (A-star) algorithm is another pathfinding algorithm that combines aspects of both Dijkstra's algorithm and greedy best-first search. A* takes into account both the cost of reaching a node from the start and a heuristic estimate of the cost to reach the goal. This makes A* more efficient than Dijkstra's algorithm in many cases, as it tends to explore paths that are more likely to lead to the optimal solution. A* is particularly useful when dealing with large graphs or grids, offering a balance between optimality and computational efficiency.
+The `A* (A-star)` algorithm is another pathfinding algorithm that combines aspects of both `Dijkstra's `algorithm and greedy best-first search. `A*` takes into account both the cost of reaching a node from the start and a heuristic estimate of the cost to reach the goal. This makes `A*` more efficient than `Dijkstra's` algorithm in many cases, as it tends to explore paths that are more likely to lead to the optimal solution. `A*` is particularly useful when dealing with `large graphs` or `grids`, offering a balance between `optimality` and computational `efficiency`.
 
 </details>
 

@@ -5,7 +5,7 @@
 
 <h1 align="center">Holberton School - System - Algorithms</h1>
 
-[Project C - Red-Black trees](./red_black_tree/)
+## [Project C - Red-Black trees](./red_black_tree/)
 
 ### Description
 
@@ -45,9 +45,9 @@ Red-Black Trees are commonly used in various applications, including the impleme
 </details>
 
 
----
 
-[Project C - Graphs](./graphs/)
+
+## [Project C - Graphs](./graphs/)
 
 ### Description
 
@@ -128,9 +128,9 @@ In computer science and mathematics, a graph is a data structure that consists o
 </details>
 
 
----
 
-[Project C - Huffman coding](./huffman_coding/)
+
+## [Project C - Huffman coding](./huffman_coding/)
 
 ### Description
 
@@ -160,9 +160,9 @@ A `priority queue` is an abstract data type that operates like a regular queue b
 
 </details>
 
----
 
-[Project C - Pathfinding](./pathfinding/)
+
+## [Project C - Pathfinding](./pathfinding/)
 
 ### Description
 

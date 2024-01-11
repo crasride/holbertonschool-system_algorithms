@@ -31,7 +31,7 @@ Huffman coding is a `compression algorithm` that assigns variable-length codes t
 <summary> **What is a binary heap (min and max):** </summary>
 <br>
 A binary heap is a specialized binary tree-based data structure that satisfies the heap property. In a min-heap, for every node i other than the root, the value of i is greater than or equal to the values of its children. This ensures that the smallest element is always at the root. Conversely, in a max-heap, for every node i other than the root, the value of i is less than or equal to the values of its children, ensuring that the largest element is at the root. Binary heaps are commonly used in algorithms that require efficient access to the minimum or maximum element, such as priority queues.
-</details><
+</details>
 
 <details>
 <summary>What is a priority queue:</summary><br>

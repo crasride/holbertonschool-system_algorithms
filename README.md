@@ -42,14 +42,6 @@ A `Red-Black Tree `is a self-balancing binary search tree, which means it automa
 The self-balancing property of Red-Black Trees ensures that the height of the tree remains logarithmic, resulting in efficient search, insertion, and deletion operations. The worst-case time complexity for these operations is O(log n), where n is the number of nodes in the tree.
 
 Red-Black Trees are commonly used in various applications, including the implementation of associative containers like sets and maps in programming languages and databases. The balanced nature of Red-Black Trees makes them suitable for scenarios where the tree structure needs to adapt dynamically to changing data.
-
-
-
-
-
-
-
-
 </details>
 
 
@@ -64,6 +56,7 @@ planning`, and `network optimization`.
 
 <details>
 <summary>What is a graph:</summary>
+<br>
 
 In computer science and mathematics, a graph is a data structure that consists of a set of nodes (vertices) and a set of edges connecting pairs of nodes. Graphs are used to model relationships between entities, and they are widely employed in various applications, including network design, social network analysis, and route planning.
 

@@ -140,7 +140,7 @@ Huffman coding is a `compression algorithm` that assigns variable-length codes t
 <summary>What is a binary heap (min and max):</summary>
 <br>
 
-A binary heap is a specialized binary tree-based data structure that satisfies the heap property. In a min-heap, for every node i other than the root, the value of i is greater than or equal to the values of its children. This ensures that the smallest element is always at the root. Conversely, in a max-heap, for every node i other than the root, the value of i is less than or equal to the values of its children, ensuring that the largest element is at the root. Binary heaps are commonly used in algorithms that require efficient access to the minimum or maximum element, such as priority queues.
+A `binary heap `is a specialized binary tree-based data structure that satisfies the heap property. In a min-heap, for every node i other than the root, the value of i is greater than or equal to the values of its children. This ensures that the smallest element is always at the root. Conversely, in a max-heap, for every node i other than the root, the value of i is less than or equal to the values of its children, ensuring that the largest element is at the root. Binary heaps are commonly used in algorithms that require efficient access to the minimum or maximum element, such as priority queues.
 
 </details>
 
@@ -148,7 +148,7 @@ A binary heap is a specialized binary tree-based data structure that satisfies t
 <summary>What is a priority queue:</summary>
 <br>
 
-A priority queue is an abstract data type that operates like a regular queue but assigns a priority level to each element. Elements with higher priority are dequeued before those with lower priority. Priority queues are commonly implemented using data structures like binary heaps, and they find applications in various algorithms, such as Dijkstra's algorithm for finding the shortest path and Huffman coding for data compression.
+A `priority queue` is an abstract data type that operates like a regular queue but assigns a priority level to each element. Elements with higher priority are dequeued before those with lower priority. `Priority queues` are commonly implemented using data structures like `binary heaps`, and they find applications in various algorithms, such as `Dijkstra's` algorithm for finding the `shortest path` and Huffman coding for data compression.
 
 </details>
 
@@ -156,7 +156,7 @@ A priority queue is an abstract data type that operates like a regular queue but
 <summary>What is a Huffman code</summary>
 <br>
 
-Huffman coding is a compression algorithm used for lossless data compression. It is named after David A. Huffman, who developed the technique. Huffman coding assigns variable-length codes to input characters based on their frequencies in the input data. The more frequent characters are assigned shorter codes, while less frequent characters receive longer codes. This results in a prefix-free code, meaning no code is a prefix of another. Huffman coding is widely used in applications like file compression (e.g., in ZIP files) and is a fundamental concept in information theory.
+`Huffman` coding is a compression algorithm used for lossless data compression. It is named after David A. Huffman, who developed the technique. Huffman coding assigns `variable-length` codes to input `characters` based on their `frequencies` in the input data. The more frequent characters are assigned shorter codes, while less frequent characters receive longer codes. This results in a prefix-free code, meaning no code is a prefix of another. `Huffman` coding is widely used in applications like file compression (e.g., in ZIP files) and is a fundamental concept in information theory.
 
 </details>
 
@@ -170,7 +170,7 @@ Huffman coding is a compression algorithm used for lossless data compression. It
 <summary>What is pathfinding:</summary> 
 <br>
 
-Pathfinding is a computational technique used in computer science and artificial intelligence to find the most efficient route or path between two points within a network, graph, or grid. The goal is to determine the optimal way to navigate from a starting point to a destination while considering various constraints or costs associated with different paths.
+`Pathfinding` is a computational technique used in computer science and artificial intelligence to find the `most efficient` route or `path` between two points within a `network, graph, or grid`. The goal is to determine the optimal way to navigate from a starting point to a destination while considering various constraints or costs associated with different paths.
 
 </details>
 
@@ -178,7 +178,7 @@ Pathfinding is a computational technique used in computer science and artificial
 <summary>What are the most common applications of pathfinding:</summary>
 <br>
 
-Pathfinding algorithms find widespread applications in various fields, such as robotics, video games, logistics, network routing, and navigation systems. They are essential for optimizing routes for vehicles, planning movements for characters in games, or determining efficient paths for delivery trucks.<br>
+`Pathfinding` algorithms find widespread applications in various fields, such as robotics, video games, logistics, network routing, and navigation systems. They are essential for `optimizing` `routes` for vehicles, `planning` movements for characters in `games`, or determining efficient paths for delivery trucks.<br>
 
 </details>
 
@@ -187,7 +187,7 @@ Pathfinding algorithms find widespread applications in various fields, such as r
 <summary>What is backtracking, and why you should never use it:</summary>
 <br>
 
-Backtracking is a brute-force algorithmic technique where the system systematically explores all possible solutions to a problem by backtracking from suboptimal paths. While it can be effective for certain problems, it tends to be inefficient for many real-world scenarios due to its exhaustive nature. Backtracking may lead to high computational costs, especially when dealing with large search spaces, making it less practical for tasks like pathfinding in complex environments.
+`Backtracking` is a `brute-force` algorithmic technique where the system systematically explores all possible solutions to a problem by `backtracking` from `suboptimal paths`. While it can be effective for certain problems, it tends to be inefficient for many real-world scenarios due to its exhaustive nature. `Backtracking` may lead to high computational costs, especially when dealing with large search spaces, making it less practical for tasks like pathfinding in complex environments.
 
 </details>
 

@@ -11,6 +11,48 @@
 
 Red-Black trees are a type of `self-balancing binary search tree`. They maintain balance during `insertions` and `deletions`, ensuring efficient `search`, `insertion`, and `deletion operations` with a logarithmic time complexity. Red-Black trees are often used in scenarios where a balanced tree structure is crucial, such as in certain `database implementations` and `memory allocation algorithms`.
 
+<details>
+<summary>What is a Red Black Tree:</summary>
+<br>
+
+A `Red-Black Tree `is a self-balancing binary search tree, which means it automatically maintains a balanced structure during insertions and deletions. It was named "`Red-Black`" due to the color-coding scheme used to balance the tree.
+
+**Here are the key properties of a Red-Black Tree:**
+
+*	`Binary Search Tree Property`:
+
+
+	* Like any binary search tree, each node has at most two children, and for each node:
+		* All nodes in its left subtree have keys less than the node's key.
+		* All nodes in its right subtree have keys greater than the node's key.
+
+*	`Coloring`:
+
+	Each node in the tree is colored either red or black.
+*	`Root and Leaves`:
+	*	The root is always black.
+	*	All leaves (null or sentinel nodes) are considered black.
+*	`Red-Black Properties`:
+	*	 No two adjacent (parent-child) nodes can be red.
+	*	Every path from a node to its descendant leaves contains the same number of black nodes, ensuring a balanced height.
+*	`Balancing Operations`:
+	*	Insertion and deletion operations include additional steps to maintain the Red-Black properties.
+	*	After insertion or deletion, the tree may need to be adjusted by rotating nodes and changing colors.
+
+The self-balancing property of Red-Black Trees ensures that the height of the tree remains logarithmic, resulting in efficient search, insertion, and deletion operations. The worst-case time complexity for these operations is O(log n), where n is the number of nodes in the tree.
+
+Red-Black Trees are commonly used in various applications, including the implementation of associative containers like sets and maps in programming languages and databases. The balanced nature of Red-Black Trees makes them suitable for scenarios where the tree structure needs to adapt dynamically to changing data.
+
+
+
+
+
+
+
+
+</details>
+
+
 ---
 
 [Project C - Graphs](./graphs/)
@@ -103,26 +145,26 @@ Huffman coding is a `compression algorithm` that assigns variable-length codes t
 
 <details>
 <summary>What is a binary heap (min and max):</summary>
+<br>
 
-```
 A binary heap is a specialized binary tree-based data structure that satisfies the heap property. In a min-heap, for every node i other than the root, the value of i is greater than or equal to the values of its children. This ensures that the smallest element is always at the root. Conversely, in a max-heap, for every node i other than the root, the value of i is less than or equal to the values of its children, ensuring that the largest element is at the root. Binary heaps are commonly used in algorithms that require efficient access to the minimum or maximum element, such as priority queues.
-```
+
 </details>
 
 <details>
 <summary>What is a priority queue:</summary>
+<br>
 
-```
 A priority queue is an abstract data type that operates like a regular queue but assigns a priority level to each element. Elements with higher priority are dequeued before those with lower priority. Priority queues are commonly implemented using data structures like binary heaps, and they find applications in various algorithms, such as Dijkstra's algorithm for finding the shortest path and Huffman coding for data compression.
-```
+
 </details>
 
 <details>
 <summary>What is a Huffman code</summary>
+<br>
 
-```
 Huffman coding is a compression algorithm used for lossless data compression. It is named after David A. Huffman, who developed the technique. Huffman coding assigns variable-length codes to input characters based on their frequencies in the input data. The more frequent characters are assigned shorter codes, while less frequent characters receive longer codes. This results in a prefix-free code, meaning no code is a prefix of another. Huffman coding is widely used in applications like file compression (e.g., in ZIP files) and is a fundamental concept in information theory.
-```
+
 </details>
 
 ---
@@ -133,45 +175,45 @@ Huffman coding is a compression algorithm used for lossless data compression. It
 
 <details>
 <summary>What is pathfinding:</summary> 
+<br>
 
-```
 Pathfinding is a computational technique used in computer science and artificial intelligence to find the most efficient route or path between two points within a network, graph, or grid. The goal is to determine the optimal way to navigate from a starting point to a destination while considering various constraints or costs associated with different paths.
-```
+
 </details>
 
 <details>
 <summary>What are the most common applications of pathfinding:</summary>
+<br>
 
-```
 Pathfinding algorithms find widespread applications in various fields, such as robotics, video games, logistics, network routing, and navigation systems. They are essential for optimizing routes for vehicles, planning movements for characters in games, or determining efficient paths for delivery trucks.<br>
-```
+
 </details>
 
 
 <details>
 <summary>What is backtracking, and why you should never use it:</summary>
+<br>
 
-```
 Backtracking is a brute-force algorithmic technique where the system systematically explores all possible solutions to a problem by backtracking from suboptimal paths. While it can be effective for certain problems, it tends to be inefficient for many real-world scenarios due to its exhaustive nature. Backtracking may lead to high computational costs, especially when dealing with large search spaces, making it less practical for tasks like pathfinding in complex environments.
-```
+
 </details>
 
 
 <details>
 <summary>What is Dijkstra’s algorithm, and what is its main weakness:</summary>
+<br>
 
-```
 Dijkstra's algorithm is a popular pathfinding algorithm used to find the shortest path between two nodes in a weighted graph. It works by iteratively selecting the node with the smallest known distance and updating the distances to its neighboring nodes. The main weakness of Dijkstra's algorithm is that it does not handle negative edge weights well. If a graph contains negative weights, the algorithm may produce incorrect results.
-```
+
 </details>
 
 
 <details>
 <summary>What is A algorithm, and how is it better than Dijkstra’s:</summary>
+<br>
 
-```
 The A* (A-star) algorithm is another pathfinding algorithm that combines aspects of both Dijkstra's algorithm and greedy best-first search. A* takes into account both the cost of reaching a node from the start and a heuristic estimate of the cost to reach the goal. This makes A* more efficient than Dijkstra's algorithm in many cases, as it tends to explore paths that are more likely to lead to the optimal solution. A* is particularly useful when dealing with large graphs or grids, offering a balance between optimality and computational efficiency.
-```
+
 </details>
 
 ## Author

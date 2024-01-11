@@ -32,9 +32,32 @@ Huffman coding is a `compression algorithm` that assigns variable-length codes t
 
 [Project C - Pathfinding](./pathfinding/)
 
-### Description
+<details>
+<summary>Click Description</summary> 
 
 ---
+
+**What is pathfinding:**
+
+Pathfinding is a computational technique used in computer science and artificial intelligence to find the most efficient route or path between two points within a network, graph, or grid. The goal is to determine the optimal way to navigate from a starting point to a destination while considering various constraints or costs associated with different paths.
+
+**What are the most common applications of pathfinding:**
+
+Pathfinding algorithms find widespread applications in various fields, such as robotics, video games, logistics, network routing, and navigation systems. They are essential for optimizing routes for vehicles, planning movements for characters in games, or determining efficient paths for delivery trucks.
+
+**What is backtracking, and why you should never use it:**
+
+Backtracking is a brute-force algorithmic technique where the system systematically explores all possible solutions to a problem by backtracking from suboptimal paths. While it can be effective for certain problems, it tends to be inefficient for many real-world scenarios due to its exhaustive nature. Backtracking may lead to high computational costs, especially when dealing with large search spaces, making it less practical for tasks like pathfinding in complex environments.
+
+**What is Dijkstra’s algorithm, and what is its main weakness:**
+
+Dijkstra's algorithm is a popular pathfinding algorithm used to find the shortest path between two nodes in a weighted graph. It works by iteratively selecting the node with the smallest known distance and updating the distances to its neighboring nodes. The main weakness of Dijkstra's algorithm is that it does not handle negative edge weights well. If a graph contains negative weights, the algorithm may produce incorrect results.
+
+**What is A algorithm, and how is it better than Dijkstra’s:**
+
+The A* (A-star) algorithm is another pathfinding algorithm that combines aspects of both Dijkstra's algorithm and greedy best-first search. A* takes into account both the cost of reaching a node from the start and a heuristic estimate of the cost to reach the goal. This makes A* more efficient than Dijkstra's algorithm in many cases, as it tends to explore paths that are more likely to lead to the optimal solution. A* is particularly useful when dealing with large graphs or grids, offering a balance between optimality and computational efficiency.
+</details>
+
 
 ## Author
 

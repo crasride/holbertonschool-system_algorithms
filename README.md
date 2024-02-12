@@ -209,6 +209,68 @@ The `A* (A-star)` algorithm is another pathfinding algorithm that combines aspec
 
 </details>
 
+## [Project C - N-ary trees](./nary_trees/)
+
+### Description
+
+<details>
+<summary>What is a N-ary tree</summary> 
+<br>
+	An N-ary tree is a tree data structure in which each node can have at most N children. Unlike a binary tree, where each node can have at most two children (left and right), an N-ary tree allows each node to have more than two children. The value of N in an N-ary tree is the maximum number of children a node can have.
+
+</details>
+
+### Description
+
+<details>
+<summary>What are the most common usage of N-ary trees</summary>
+<br>
+
+1. **File Systems:**
+
+	* N-ary trees are often used to represent file systems. Each directory can have multiple subdirectories, making it a natural fit for an N-ary tree structure.
+
+2. **Organization Structures:**
+
+	* Representing organizational structures in a business or hierarchy, where each employee (node) can have multiple subordinates.
+
+3. **Syntax Trees:**
+
+	* In linguistics and compilers, N-ary trees are used to represent the hierarchical structure of sentences or programming language constructs.
+
+4. **Decision Trees:**
+
+	* Representing multiway decisions in decision trees, where each internal node represents a decision with multiple outcomes.
+
+</details>
+
+### Description
+
+<details>
+<summary>How to represent an N-ary tree in C in at least two different ways</summary> 
+<br>
+
+1. **Array-Based Representation:**
+
+	*	In this approach, you can use a one-dimensional array to represent the nodes of an N-ary tree. The relationship between nodes is determined by the index of the array elements. For a node at index i, its children can be found at indices `N*i + 1` through `N*i + N.`
+
+2. **Linked Representation:**
+
+	*	Another way is to use a linked representation, where each node in the N-ary tree is a struct containing data and a list of pointers to its children. This involves dynamically allocating memory for each node and linking them together.
+
+</details>
+
+### Description
+
+<details>
+<summary>What is the diameter of an N-ary tree</summary> 
+<br>
+
+The diameter of an N-ary tree is defined as the length of the longest path between any two nodes in the tree. This path does not necessarily need to pass through the root. Calculating the diameter involves finding the maximum depth of the tree starting from each node and determining the maximum distance between two nodes.
+
+For more details on how to calculate the diameter of an N-ary tree, you can refer to specific algorithms and resources mentioned earlier. The process involves traversing the tree and keeping track of the maximum path length encountered.
+</details>
+
 ## Author
 
 * José Fernàndez Armas

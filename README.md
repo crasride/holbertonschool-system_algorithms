@@ -220,7 +220,6 @@ The `A* (A-star)` algorithm is another pathfinding algorithm that combines aspec
 
 </details>
 
-### Description
 
 <details>
 <summary>What are the most common usage of N-ary trees</summary>
@@ -244,8 +243,6 @@ The `A* (A-star)` algorithm is another pathfinding algorithm that combines aspec
 
 </details>
 
-### Description
-
 <details>
 <summary>How to represent an N-ary tree in C in at least two different ways</summary> 
 <br>
@@ -260,7 +257,6 @@ The `A* (A-star)` algorithm is another pathfinding algorithm that combines aspec
 
 </details>
 
-### Description
 
 <details>
 <summary>What is the diameter of an N-ary tree</summary> 

@@ -40,12 +40,12 @@ static void traverse_helper(nary_tree_t const *node, size_t depth,
 size_t nary_tree_traverse(nary_tree_t const *root,
 						 void (*action)(nary_tree_t const *node, size_t depth))
 {
+	/* Initialize the maximum depth */
+	size_t max_depth = 0;
+
 	/* Check if the tree or the action is NULL */
 	if (root == NULL || action == NULL)
 		return (0);
-
-	/* Initialize the maximum depth */
-	size_t max_depth = 0;
 
 	/* Start the traversal from the root with depth 0 */
 	traverse_helper(root, 0, action, &max_depth);

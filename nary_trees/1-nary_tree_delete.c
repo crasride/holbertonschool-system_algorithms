@@ -1,32 +1,19 @@
 #include "nary_trees.h"
 
 /**
-* nary_tree_delete - Deallocates an entire N-ary tree.
-* @tree: Pointer to the root of the tree to delete.
+* nary_tree_delete - free entire nary_tree_t tree
+* @tree: root node of n-ary tree
 */
 void nary_tree_delete(nary_tree_t *tree)
 {
-	if (tree == NULL)
-		fprintf(stderr, "Error: NULL tree pointer\n");
-	return;
+	nary_tree_t *tmp;
 
-	/* Recursively delete all children */
-	while (tree->children)
+	while (tree)
 	{
-		nary_tree_delete(tree->children);
+		tmp = tree;
+		tree = tree->next;
+		nary_tree_delete(tmp->children);
+		free(tmp->content);
+		free(tmp);
 	}
-
-	/* Free the content and the node itself */
-	if (tree->content != NULL)
-		free(tree->content);
-	else
-		fprintf(stderr, "Warning: NULL content pointer\n");
-
-	/* Update parent's next pointer if needed */
-	if (tree->parent != NULL && tree->parent->children == tree)
-	{
-		tree->parent->children = tree->next;
-	}
-
-	free(tree);
 }

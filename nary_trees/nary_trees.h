@@ -25,12 +25,16 @@ typedef struct nary_tree_s
 	struct nary_tree_s  *next;
 } nary_tree_t;
 
-/* Functions Taks*/
+/* Functions Taks 0*/
 nary_tree_t *nary_tree_insert(nary_tree_t *parent, char const *str);
+/* Functions Taks 1*/
 void nary_tree_delete(nary_tree_t *tree);
+/* Functions Taks 2*/
 size_t nary_tree_traverse(nary_tree_t const *root,
 						void (*action)(nary_tree_t const *node, size_t depth));
+/* Functions Taks 3*/
 size_t nary_tree_diameter(nary_tree_t const *root);
+/* Functions Taks 4*/
 int path_exists(nary_tree_t const *root, char const * const *path);
 
 #endif /* __N_ARY_TREES__ */

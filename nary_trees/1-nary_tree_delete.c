@@ -6,14 +6,21 @@
 */
 void nary_tree_delete(nary_tree_t *tree)
 {
-	nary_tree_t *tmp;
+	/* Temporary variable to traverse the tree */
+	nary_tree_t *buffer;
 
+	/* Traverse the tree until the end */
 	while (tree)
 	{
-		tmp = tree;
+		/* Save the current node in buffer */
+		buffer = tree;
+		/* Move to the next node in the linked list of children */
 		tree = tree->next;
-		nary_tree_delete(tmp->children);
-		free(tmp->content);
-		free(tmp);
+		/* Recursively delete the children of the current node */
+		nary_tree_delete(buffer->children);
+		/* Free the content of the current node */
+		free(buffer->content);
+		/* Free the current node itself */
+		free(buffer);
 	}
 }
